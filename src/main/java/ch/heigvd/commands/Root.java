@@ -1,17 +1,16 @@
 package ch.heigvd.commands;
 
-import picocli.CommandLine;
 import ch.heigvd.Config;
+import picocli.CommandLine;
 
 @CommandLine.Command(
-    description = "Small cli program that manage file structure for students, that allow to create classes and notes",
+    description =
+        "Small cli program that manage file structure for students, that allow to create classes and notes",
     version = "1.0.0",
-    subcommands = {
-    },
+    subcommands = {New_note.class},
     scope = CommandLine.ScopeType.INHERIT,
     mixinStandardHelpOptions = true)
 public class Root {
-
   @CommandLine.Option(
       names = {"-c", "--config"},
       description = "The name of the config file.",
