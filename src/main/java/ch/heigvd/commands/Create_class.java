@@ -17,12 +17,6 @@ public class Create_class implements Callable<Integer> {
   @CommandLine.Parameters(description = "Path to create the structure")
   protected String path;
 
-  /*@CommandLine.Option(
-          names = {"-n", "--name"},
-          description = "Name of the class",
-          required = true)
-  protected int name;*/
-
   @Override
   public Integer call() {
     Config config = parent.getConfig();
