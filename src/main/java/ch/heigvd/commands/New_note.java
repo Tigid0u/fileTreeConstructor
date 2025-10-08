@@ -9,6 +9,10 @@ import picocli.CommandLine;
 @CommandLine.Command(
     name = "new_note",
     description = "Creates a new note based of the config from the config file.")
+/**
+ * The class will create a new note based on the path that the user wants based of configs
+ * that come from the config file.
+ */
 public class New_note implements Callable<Integer> {
   @CommandLine.ParentCommand protected Root parent;
 
@@ -30,7 +34,11 @@ public class New_note implements Callable<Integer> {
       required = true)
   protected String class_name;
 
-  // @Override
+    /**
+     * Create the new note in the right path with the right title
+     * @return
+     */
+  @Override
   public Integer call() {
     // Parse config file into Config object
     Config fileConfig = parent.getConfig();
