@@ -29,7 +29,7 @@ public class New_note implements Callable<Integer> {
   protected String path;
 
   @CommandLine.Option(
-      names = {"-c", "class"},
+      names = {"-c", "--class"},
       description = "The class name this note is for.",
       required = true)
   protected String class_name;
