@@ -11,13 +11,22 @@ import picocli.CommandLine;
     scope = CommandLine.ScopeType.INHERIT,
     mixinStandardHelpOptions = true)
 public class Root {
+
   @CommandLine.Option(
       names = {"-c", "--config"},
       description = "The name of the config file.",
       defaultValue = "config.json")
   protected String configFilename;
 
-  public Config getConfigFilename() {
-    return Config.getConfigFromFile(configFilename);
+  public Config getConfig() {
+    Config config;
+    try {
+      config = Config.getConfigFromFile(configFilename);
+    } catch (java.io.IOException e) {
+      System.out.println(
+          "Failed to open Config file : No such file\nCreating a default config file");
+      config = new Config();
+    }
+    return config;
   }
 }
