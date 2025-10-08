@@ -10,8 +10,8 @@ import picocli.CommandLine;
     name = "new_note",
     description = "Creates a new note based of the config from the config file.")
 /**
- * The class will create a new note based on the path that the user wants based of configs
- * that come from the config file.
+ * The class will create a new note based on the path that the user wants based of configs that come
+ * from the config file.
  */
 public class New_note implements Callable<Integer> {
   @CommandLine.ParentCommand protected Root parent;
@@ -30,14 +30,14 @@ public class New_note implements Callable<Integer> {
 
   @CommandLine.Option(
       names = {"-c", "--class"},
-      description = "The class name this note is for.",
-      required = true)
+      description = "The class name this note is for.")
   protected String class_name;
 
-    /**
-     * Create the new note in the right path with the right title
-     * @return
-     */
+  /**
+   * Create the new note in the right path with the right title
+   *
+   * @return
+   */
   @Override
   public Integer call() {
     // Parse config file into Config object
@@ -45,7 +45,7 @@ public class New_note implements Callable<Integer> {
 
     // Compose the title that will be written as the file name and title of the note.
     String title_composed =
-        ((fileConfig.includeClassNameInFilename) ? class_name + "-" : "")
+        ((fileConfig.includeClassNameInFilename && class_name != null) ? class_name + "-" : "")
             + title
             + ((fileConfig.includeDateInFilename ? "-" + LocalDate.now() : ""));
 
