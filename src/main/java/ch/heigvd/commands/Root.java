@@ -9,7 +9,7 @@ import java.io.IOException;
     description =
         "Small cli program that manage file structure for students, that allow to create classes and notes",
     version = "1.0.0",
-    subcommands = {Create_class.class},
+    subcommands = {Create_class.class, New_note.class},
     scope = CommandLine.ScopeType.INHERIT,
     mixinStandardHelpOptions = true)
 public class Root {
