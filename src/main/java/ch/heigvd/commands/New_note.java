@@ -16,17 +16,12 @@ import picocli.CommandLine;
 public class New_note implements Callable<Integer> {
   @CommandLine.ParentCommand protected Root parent;
 
-  @CommandLine.Option(
-      names = {"-t", "--title"},
-      description = "The title that will be displayed inside the note.",
-      required = true)
-  protected String title;
-
-  @CommandLine.Option(
-      names = {"-p", "path"},
-      description = "Path where the new note will be created",
-      required = true)
+  @CommandLine.Parameters(description = "Path where the new note will be created")
   protected String path;
+
+  @CommandLine.Parameters(
+      description = "The title that will be displayed inside the note and as filename")
+  protected String title;
 
   @CommandLine.Option(
       names = {"-c", "--class"},
@@ -49,6 +44,16 @@ public class New_note implements Callable<Integer> {
             + title
             + ((fileConfig.includeDateInFilename ? "-" + LocalDate.now() : ""));
 
+    // Add / at the end of the path if not present
+    if (path.charAt(path.length() - 1) != '/') path += "/";
+
+    // Check if the file already exists so that we don't delete it by mistake
+    File tmpDir = new File(path + title_composed + "." + fileConfig.notesFileFormat);
+    if (tmpDir.exists()) {
+      System.out.println("Error: File already exists at: " + tmpDir.getAbsolutePath());
+      return 1;
+    }
+
     // Ask if the user enter IN the title the extension or not
     switch (fileConfig.notesFileFormat) {
       case "md":
@@ -58,6 +63,7 @@ public class New_note implements Callable<Integer> {
           bfs.write("# " + title_composed);
         } catch (IOException e) {
           System.out.println("Exception: " + e);
+          return 1;
         }
         break;
       case "txt":
@@ -67,12 +73,17 @@ public class New_note implements Callable<Integer> {
           bfs.write(title_composed);
         } catch (IOException e) {
           System.out.println("Exception: " + e);
+          return 1;
         }
         break;
       default:
-        System.out.println("Default value for 'notesFileFormat'");
-        break;
+        System.out.println(
+            "File format not supported, supported formats are Markdown (md) and text (txt). "
+                + "No note file was created, please modify your config.json file.");
+        return 1;
     }
+    System.out.println(
+        "Note created at: " + path + title_composed + "." + fileConfig.notesFileFormat);
     return 0;
   }
 }
