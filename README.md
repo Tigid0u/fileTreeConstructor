@@ -38,12 +38,18 @@ Usage: fileTreeConstructor-1.0-SNAPSHOT.jar [-hV] [-c=<configFilename>]
 Small cli program that manage file structure for students, that allow to create
 classes and notes
   -c, --config=<configFilename>
-                  The name of the config file.
+                  The name of the config file. 
   -h, --help      Show this help message and exit.
   -V, --version   Print version information and exit.
 Commands:
   Create_class  Create a new class sub-directory
   new_note      Creates a new note based of the config from the config file.
+```
+
+You can get the same help page for the subcommands by using the `-h` option on a subcommand like so:
+
+```bash
+java -jar target/fileTreeConstructor-1.0-SNAPSHOT.jar <subcommand> -h
 ```
 
 **Create a new class**
@@ -83,6 +89,34 @@ java -jar target/fileTreeConstructor-1.0-SNAPSHOT.jar new_note -c DAI ~/DAI/cour
 Note created at: ~/DAI/course notes/DAI-my-first-note-2025-10-13.md
 ```
 
+## Configuration
+
+The program relies on a configuration file (in JSON format) to determine how to create class folders and note files.
+It allows you to customize file naming, encoding, directory structure, and note format.
+
+If no configuration file is found, a default one is automatically generated:
+
+```json
+{
+  "encoding": "UTF-8",
+  "includeDateInFilename": true,
+  "includeClassNameInFilename": true,
+  "subdirs": ["class material", "course notes"],
+  "notesFileFormat": "md"
+}
+```
+
+**Configuration options:**
+
+| Key                            | Type                | Description                                                                                                      |
+| ------------------------------ | ------------------- |------------------------------------------------------------------------------------------------------------------|
+| **encoding**                   | `string`            | The character encoding used for new note files. Default is `"UTF-8"`.                                            |
+| **includeDateInFilename**      | `boolean`           | Whether to include the current date in the generated note filename                                               |
+| **includeClassNameInFilename** | `boolean`           | Whether to include the class name in the filename.                                                               |
+| **subdirs**                    | `array` of `string` | The list of subdirectories to create when initializing a new class. You can customize or add new ones as needed. |
+| **notesFileFormat**            | `string`            | The file format/extension of the notes. Supported formats are: `"md"`, `"txt"`.                                  |
+
+
 ## How to get started
 
 1. **Clone the project**
@@ -93,7 +127,7 @@ Note created at: ~/DAI/course notes/DAI-my-first-note-2025-10-13.md
     ```bash
    ./mvnw dependency:go-offline clean spotless:apply compile package
    ```
-3. **Run the program using one of the command listed above**
+3. **Run the program using one of the command listed above in the 'Usage Example' section**
 
 ## Contribute
 
