@@ -1,13 +1,15 @@
 package ch.heigvd.commands;
 
-import picocli.CommandLine;
 import ch.heigvd.Config;
+import picocli.CommandLine;
+
+import java.io.IOException;
 
 @CommandLine.Command(
-    description = "Small cli program that manage file structure for students, that allow to create classes and notes",
+    description =
+        "Small cli program that manage file structure for students, that allow to create classes and notes",
     version = "1.0.0",
-    subcommands = {
-    },
+    subcommands = {Create_class.class},
     scope = CommandLine.ScopeType.INHERIT,
     mixinStandardHelpOptions = true)
 public class Root {
@@ -18,7 +20,27 @@ public class Root {
       defaultValue = "config.json")
   protected String configFilename;
 
-  public Config getConfigFilename() {
-    return Config.getConfigFromFile(configFilename);
+
+    /**
+     * Get config from filename if it was specified or create a default one
+     *
+     * @return a Config object initialized with the content of the JSON file
+     *     correspond to the Config object structure or a default one if no file found
+     */
+  public Config getConfig() {
+    Config config;
+    try {
+      config = Config.getConfigFromFile(configFilename);
+    } catch (java.io.IOException e) {
+      System.out.println(
+          "Failed to open Config file : No such file\nCreating a default config file");
+      config = new Config();
+      try {
+        config.writeConfigToFile("config.json");
+      } catch (java.io.IOException e1) {
+        System.out.println(e1.getMessage());
+      }
+    }
+    return config;
   }
 }

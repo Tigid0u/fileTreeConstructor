@@ -4,6 +4,7 @@
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <option name="MAIN_CLASS_NAME" value="ch.heigvd.Main" />
     <module name="fileTreeConstructor" />
+    <option name="PROGRAM_PARAMETERS" value="Create_class ma_classe /home/maikol/heig-vd/dai/practical-works/fileTreeConstructor" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
