@@ -41,7 +41,30 @@ Example configuration file:
 
 # **Parse the config file**
 
+Configuration file retrieval and parsing:
 
+```java
+  public static Config getConfigFromFile(String filename) throws IOException {
+    try (Reader rd = new FileReader(filename, StandardCharsets.UTF_8);
+        BufferedReader brd = new BufferedReader(rd)) {
+      return mapper.readValue(brd, ch.heigvd.Config.class);
+    }
+  }
+```
+
+---
+# **Write config to file**
+
+Here's how the config is written back to a file:
+
+```java
+public void writeConfigToFile(String filename) throws IOException {
+    try (Writer wr = new FileWriter(filename, StandardCharsets.UTF_8);
+        BufferedWriter bwr = new BufferedWriter(wr)) {
+      mapper.writeValue(bwr, this);
+    }
+  }
+```
 
 ---
 
