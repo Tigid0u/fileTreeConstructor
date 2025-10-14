@@ -12,18 +12,48 @@ Course files manager
 
 ---
 
-# How to write slides
+# **Introduction**
 
-Split pages by horizontal ruler (`---`). It's very simple! :satisfied:
+**Problem**
 
-```markdown
-# Slide 1
+- The problem we aim to solve
+- The solution we found
 
-foobar
+![bg right](./img/documents_messydesk.jpg)
 
 ---
 
-# Slide 2
+# **Config based approach**
 
-foobar
+Example configuration file:
+
+```json
+{
+  "encoding": "UTF-8",
+  "includeDateInFilename": true,
+  "includeClassNameInFilename": true,
+  "subdirs": ["class material", "course notes"],
+  "notesFileFormat": "md"
+}
 ```
+
+---
+
+# **Parse the config file**
+
+
+
+---
+
+# **Entry point**
+
+---
+
+# **Create class**
+
+---
+
+# **New course note**
+
+---
+
