@@ -4,6 +4,13 @@ _class: lead
 paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://marp.app/assets/hero-background.svg')
+style: |
+  section.centered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
 ---
 
 # **File Tree Constructor**
@@ -147,6 +154,7 @@ File tmpDir = new File(path + title_composed + "." + fileConfig.notesFileFormat)
 ```
 
 ---
+<!-- _class: centered -->
+# **Any question ?**
 
-# **Conlcusion**
 
