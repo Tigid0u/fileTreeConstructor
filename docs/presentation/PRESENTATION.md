@@ -69,13 +69,17 @@ public Config getConfig() {
 ---
 
 # **Create class**
-## How to use
+**How to use**
 
 ```bash
 java -jar fileTreeConstructor.jar Create_class <name> <path>
 ```
+**Example**
+```bash
+java -jar ./demo/fileTreeConstructor.jar Create_class DAI ./demo
+```
 
-## How it works
+**How it works**
 ```java
 Files.createDirectories(Path dir);
 ```
