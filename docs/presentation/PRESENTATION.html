@@ -36,10 +36,33 @@
 <h1 id="parse-the-config-file"><strong>Parse the config file</strong></h1>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-background-color="#fff" data-background-image="url('https://marp.app/assets/hero-background.svg')" data-theme="gaia" lang="POSIX" data-marpit-pagination="5" style="--paginate:true;--background-color:#fff;--background-image:url('https://marp.app/assets/hero-background.svg');--theme:gaia;background-color:#fff;background-image:url('https://marp.app/assets/hero-background.svg');background-position:center;background-repeat:no-repeat;background-size:cover;" data-marpit-pagination-total="8">
-<h1 id="entry-point"><strong>Entry point</strong></h1>
+<h1 id="root-command"><strong>Root command</strong></h1>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java"><span class="hljs-keyword">public</span> Config <span class="hljs-title function_">getConfig</span><span class="hljs-params">()</span> {
+    Config config;
+    <span class="hljs-keyword">try</span> {
+      config = Config.getConfigFromFile(configFilename);
+    } <span class="hljs-keyword">catch</span> (java.io.IOException e) {
+      System.out.println(
+          <span class="hljs-string">&quot;Failed to open Config file : No such file\nCreating a default config file&quot;</span>);
+      config = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Config</span>();
+      <span class="hljs-keyword">try</span> {
+        config.writeConfigToFile(<span class="hljs-string">&quot;config.json&quot;</span>);
+      } <span class="hljs-keyword">catch</span> (java.io.IOException e1) {
+        System.out.println(e1.getMessage());
+      }
+    }
+    <span class="hljs-keyword">return</span> config;
+  }
+</code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-background-color="#fff" data-background-image="url('https://marp.app/assets/hero-background.svg')" data-theme="gaia" lang="POSIX" data-marpit-pagination="6" style="--paginate:true;--background-color:#fff;--background-image:url('https://marp.app/assets/hero-background.svg');--theme:gaia;background-color:#fff;background-image:url('https://marp.app/assets/hero-background.svg');background-position:center;background-repeat:no-repeat;background-size:cover;" data-marpit-pagination-total="8">
 <h1 id="create-class"><strong>Create class</strong></h1>
+<h2 id="how-to-use">How to use</h2>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash">java -jar fileTreeConstructor.jar Create_class &lt;name&gt; &lt;path&gt;
+</code></pre>
+<h2 id="how-it-works">How it works</h2>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-java">Files.createDirectories(Path dir);
+</code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-background-color="#fff" data-background-image="url('https://marp.app/assets/hero-background.svg')" data-theme="gaia" lang="POSIX" data-marpit-pagination="7" style="--paginate:true;--background-color:#fff;--background-image:url('https://marp.app/assets/hero-background.svg');--theme:gaia;background-color:#fff;background-image:url('https://marp.app/assets/hero-background.svg');background-position:center;background-repeat:no-repeat;background-size:cover;" data-marpit-pagination-total="8">
 <h1 id="new-course-note"><strong>New course note</strong></h1>

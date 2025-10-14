@@ -45,11 +45,40 @@ Example configuration file:
 
 ---
 
-# **Entry point**
+# **Root command**
+```java
+public Config getConfig() {
+    Config config;
+    try {
+      config = Config.getConfigFromFile(configFilename);
+    } catch (java.io.IOException e) {
+      System.out.println(
+          "Failed to open Config file : No such file\nCreating a default config file");
+      config = new Config();
+      try {
+        config.writeConfigToFile("config.json");
+      } catch (java.io.IOException e1) {
+        System.out.println(e1.getMessage());
+      }
+    }
+    return config;
+  }
+```
+
 
 ---
 
 # **Create class**
+## How to use
+
+```bash
+java -jar fileTreeConstructor.jar Create_class <name> <path>
+```
+
+## How it works
+```java
+Files.createDirectories(Path dir);
+```
 
 ---
 
