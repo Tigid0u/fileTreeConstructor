@@ -3,8 +3,6 @@ package ch.heigvd.commands;
 import ch.heigvd.Config;
 import picocli.CommandLine;
 
-import java.io.IOException;
-
 @CommandLine.Command(
     description =
         "Small cli program that manage file structure for students, that allow to create classes and notes",
@@ -20,13 +18,12 @@ public class Root {
       defaultValue = "config.json")
   protected String configFilename;
 
-
-    /**
-     * Get config from filename if it was specified or create a default one
-     *
-     * @return a Config object initialized with the content of the JSON file
-     *     correspond to the Config object structure or a default one if no file found
-     */
+  /**
+   * Get config from filename if it was specified or create a default one
+   *
+   * @return a Config object initialized with the content of the JSON file correspond to the Config
+   *     object structure or a default one if no file found
+   */
   public Config getConfig() {
     Config config;
     try {

@@ -16,8 +16,11 @@ Course files manager
 
 **Problem**
 
-- The problem we aim to solve
-- The solution we found
+- Organizing a course can be bothersome and tedious.
+
+**Solution**
+
+- Small CLI, capable of standardizing a file tree and a note format.
 
 ![bg right](./img/documents_messydesk.jpg)
 
@@ -111,5 +114,39 @@ Files.createDirectories(Path dir);
 
 # **New course note**
 
+**How to use**
+
+```bash
+java -jar fileTreeConstructor.jar new_note [-c=<class_name>] <path> <title>
+```
+
+**Example**
+
+```bash
+java -jar ./demo/fileTreeConstructor.jar new_note -c DAI ./demo/DAI/course\ notes "example"
+```
+
 ---
+
+# **New course note**
+
+The path is insensitive to the presence or absence of a `/`.
+
+```java
+if (path.charAt(path.length() - 1) != '/') path += "/";
+```
+
+**Create copy of existing file**
+
+```java
+File tmpDir = new File(path + title_composed + "." + fileConfig.notesFileFormat);
+    if (tmpDir.exists()) {
+      System.out.println("Error: File already exists at: " + tmpDir.getAbsolutePath());
+      return 1;
+    }
+```
+
+---
+
+# **Conlcusion**
 
